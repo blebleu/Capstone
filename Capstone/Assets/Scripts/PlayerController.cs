@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour {
 
+    enum WeaponID { fist, knife, pistol, rifle};
     public int gunDamage = 1;
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
@@ -15,10 +17,35 @@ public class PlayerController : MonoBehaviour {
     private AudioSource gunAudio;
     private LineRenderer laserLine;
     private float nextFire;
+    
+    private int knifeCount = 1;
+
+    //Objects the player can use
+
+    public GameObject[] inventory;
+
+    public GameObject fist;
+    public GameObject knife;
+    public GameObject pistol;
+    public GameObject rifle;
+
+    public GameObject itemInHand;
+    private WeaponID itemNumber = WeaponID.fist; 
+    
+    
 
 
     void Start()
     {
+        inventory = new GameObject[] {fist, knife, pistol, rifle };
+        
+
+        itemNumber = WeaponID.rifle;
+
+        itemInHand = inventory[(int) itemNumber];
+
+
+
         laserLine = GetComponent<LineRenderer>();
 
         gunAudio = GetComponent<AudioSource>();
@@ -30,6 +57,65 @@ public class PlayerController : MonoBehaviour {
 
 
     void Update()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if((int) itemNumber < inventory.Length - 1)
+            {
+                Debug.Log(itemNumber);
+                inventory[(int)itemNumber].SetActive(false);
+                itemNumber++;
+                inventory[(int)itemNumber].SetActive(true);
+                itemInHand = inventory[(int)itemNumber];
+            }
+            else
+            {
+                Debug.Log(itemNumber);
+                inventory[(int)itemNumber].SetActive(false);
+                itemNumber = 0;
+                inventory[(int)itemNumber].SetActive(true);
+                itemInHand = inventory[(int)itemNumber];
+            }
+        }
+        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            if (itemNumber > 0)
+            {
+                Debug.Log(itemNumber);
+                inventory[(int) itemNumber].SetActive(false);
+                itemNumber--;
+                inventory[(int)itemNumber].SetActive(true);
+                itemInHand = inventory[(int)itemNumber];
+            }
+            else
+            {
+                Debug.Log(itemNumber);
+                inventory[(int)itemNumber].SetActive(false);
+                itemNumber = (WeaponID) inventory.Length - 1;
+                inventory[(int)itemNumber].SetActive(true);
+                itemInHand = inventory[(int)itemNumber];
+            }
+        }
+        switch (itemNumber)
+        {
+            case WeaponID.fist:
+                FireGun();
+                break;
+        }
+
+
+    private IEnumerator ShotEffect()
+    {
+        gunAudio.Play();
+
+        laserLine.enabled = true;
+
+        yield return shotDuration;
+
+        laserLine.enabled = false;
+    }
+
+    void FireGun()
     {
         if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
         {
@@ -47,15 +133,15 @@ public class PlayerController : MonoBehaviour {
             {
                 laserLine.SetPosition(1, hit.point);
 
-                if(hit.transform.tag == "Enemy")
+                if (hit.transform.tag == "Enemy")
                 {
-                    EnemyController theEnemy = hit.collider.GetComponent <EnemyController>();
+                    EnemyController theEnemy = hit.collider.GetComponent<EnemyController>();
 
                     theEnemy.Damage(gunDamage);
-                    
+
 
                 }
-                
+
 
                 if (hit.rigidbody != null)
                 {
@@ -67,18 +153,6 @@ public class PlayerController : MonoBehaviour {
                 laserLine.SetPosition(1, rayOrigin + (fpsCam.transform.forward * weaponRange));
             }
         }
-    }
-
-
-    private IEnumerator ShotEffect()
-    {
-        gunAudio.Play();
-
-        laserLine.enabled = true;
-
-        yield return shotDuration;
-
-        laserLine.enabled = false;
     }
 
 }
