@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour {
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            if((int) itemNumber < inventory.Length - 1)
+            if ((int)itemNumber < inventory.Length - 1)
             {
                 Debug.Log(itemNumber);
                 inventory[(int)itemNumber].SetActive(false);
@@ -82,7 +82,7 @@ public class PlayerController : MonoBehaviour {
             if (itemNumber > 0)
             {
                 Debug.Log(itemNumber);
-                inventory[(int) itemNumber].SetActive(false);
+                inventory[(int)itemNumber].SetActive(false);
                 itemNumber--;
                 inventory[(int)itemNumber].SetActive(true);
                 itemInHand = inventory[(int)itemNumber];
@@ -91,19 +91,19 @@ public class PlayerController : MonoBehaviour {
             {
                 Debug.Log(itemNumber);
                 inventory[(int)itemNumber].SetActive(false);
-                itemNumber = (WeaponID) inventory.Length - 1;
+                itemNumber = (WeaponID)inventory.Length - 1;
                 inventory[(int)itemNumber].SetActive(true);
                 itemInHand = inventory[(int)itemNumber];
             }
         }
         switch (itemNumber)
         {
-            case WeaponID.fist:
+            case WeaponID.rifle:
                 FireGun();
                 break;
         }
 
-
+    }
     private IEnumerator ShotEffect()
     {
         gunAudio.Play();
