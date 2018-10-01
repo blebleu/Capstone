@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-    enum WeaponID { fist, knife, pistol, rifle};
+    enum WeaponID {knife, rifle};
     public int gunDamage = 1;
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
@@ -30,14 +30,14 @@ public class PlayerController : MonoBehaviour {
     public GameObject rifle;
 
     public GameObject itemInHand;
-    private WeaponID itemNumber = WeaponID.fist; 
+    private WeaponID itemNumber = WeaponID.rifle; 
     
     
 
 
     void Start()
     {
-        inventory = new GameObject[] {fist, knife, pistol, rifle };
+        inventory = new GameObject[] {knife, rifle };
         
 
         itemNumber = WeaponID.rifle;
@@ -101,6 +101,9 @@ public class PlayerController : MonoBehaviour {
             case WeaponID.rifle:
                 FireGun();
                 break;
+            case WeaponID.knife:
+                FireKnife();
+                break;
         }
 
     }
@@ -154,5 +157,8 @@ public class PlayerController : MonoBehaviour {
             }
         }
     }
+    void FireKnife()
+    {
 
+    }
 }
