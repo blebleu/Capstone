@@ -48,6 +48,10 @@ public class PlayerController : MonoBehaviour {
 
         laserLine = GetComponent<LineRenderer>();
 
+        laserLine.startWidth = .2f;
+        laserLine.endWidth = .1f;
+
+
         gunAudio = GetComponent<AudioSource>();
 
         fpsCam = GetComponentInChildren<Camera>();
@@ -131,6 +135,7 @@ public class PlayerController : MonoBehaviour {
             RaycastHit hit;
 
             laserLine.SetPosition(0, gunEnd.position);
+
 
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
