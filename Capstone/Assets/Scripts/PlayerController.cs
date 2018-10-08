@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
     public int gunDamage = 1;
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
-    public float hitForce = 100f;
     public Transform gunEnd;
 
     private Camera fpsCam;
@@ -150,11 +149,6 @@ public class PlayerController : MonoBehaviour {
 
                 }
 
-
-                if (hit.rigidbody != null)
-                {
-                    hit.rigidbody.AddForce(-hit.normal * hitForce);
-                }
             }
             else
             {
