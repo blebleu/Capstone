@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33248554174891148}
   - component: {fileID: 23807099369780126}
   - component: {fileID: 65863928658492412}
+  - component: {fileID: 114313256724315988}
   m_Layer: 0
   m_Name: camera
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -343,6 +344,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114313256724315988
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1204596266783790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 779e71cf651c8ed42bf4e5258bdb9ec6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 1
 --- !u!114 &114647879455694650
 MonoBehaviour:
   m_ObjectHideFlags: 1

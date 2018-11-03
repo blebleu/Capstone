@@ -9,8 +9,9 @@ public class MoveTo : MonoBehaviour
     public Transform spyCamera;
     public GameObject[] patrolSpots;
 
-    enum EnemyStates { Patrol, Seeking, Attacking, Retreating };
-    EnemyStates enemyState = EnemyStates.Patrol;
+    public enum EnemyStates { Patrol, Seeking, Attacking, Retreating };
+    
+    public EnemyStates enemyState = EnemyStates.Patrol;
     EnemyController enemyScript;
     public int currentPostion = 0;
     private void Start()
@@ -27,8 +28,6 @@ public class MoveTo : MonoBehaviour
 
         
     }
-
-
     private void FixedUpdate()
     {
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -40,7 +39,8 @@ public class MoveTo : MonoBehaviour
         else if (enemyState == EnemyStates.Seeking)
         {
             agent.destination = spyCamera.position;
-            if((spyCamera.position.x - gameObject.transform.position.x <= .3) && (spyCamera.position.z - gameObject.transform.position.z <= .3))
+            float distance = Vector3.Distance(gameObject.transform.position - gameObject.transform.position.y * Vector3.up, spyCamera.position - spyCamera.position.y *Vector3.up);
+            if(distance <= .3)
             {
                 enemyState = EnemyStates.Patrol;
                 Renderer rend = spyCamera.GetComponent<Renderer>();

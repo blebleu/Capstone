@@ -20,14 +20,9 @@ public class EnemyCameras : MonoBehaviour {
                 MoveTo enemyScipt = enemiesToCall[i].GetComponent<MoveTo>();
                 enemyScipt.CameraTriggered(gameObject);
                 Debug.Log("triggered 2");
-
-               
             }
             Renderer rend = gameObject.GetComponent<Renderer>();
             rend.material.color = Color.white;
-        }
-       
-
-       
+        } 
     }
 }
