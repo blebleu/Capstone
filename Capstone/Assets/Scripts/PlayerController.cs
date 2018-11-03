@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour {
     public int gunDamage = 1;
     public float fireRate = 0.25f;
     public float weaponRange = 50f;
-    public float hitForce = 100f;
     public Transform gunEnd;
 
     private Camera fpsCam;
@@ -18,7 +17,9 @@ public class PlayerController : MonoBehaviour {
     private LineRenderer laserLine;
     private float nextFire;
     
-    private int knifeCount = 1;
+    public int knifeCount = 1;
+    
+    public Animator knifeAnimation;
 
     //Objects the player can use
 
@@ -37,22 +38,17 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
+        knifeAnimation = GetComponent<Animator>();
+
+
         inventory = new GameObject[] {knife, rifle };
-        
-
         itemNumber = WeaponID.rifle;
-
         itemInHand = inventory[(int) itemNumber];
-
-
-
         laserLine = GetComponent<LineRenderer>();
-
+        laserLine.startWidth = .2f;
+        laserLine.endWidth = .1f;
         gunAudio = GetComponent<AudioSource>();
-
         fpsCam = GetComponentInChildren<Camera>();
-
-    
     }
 
 
@@ -96,16 +92,17 @@ public class PlayerController : MonoBehaviour {
                 itemInHand = inventory[(int)itemNumber];
             }
         }
-        switch (itemNumber)
-        {
-            case WeaponID.rifle:
-                FireGun();
-                break;
-            case WeaponID.knife:
-                FireKnife();
-                break;
+        if (Input.GetButtonDown("Fire1")){
+            switch (itemNumber)
+            {
+                case WeaponID.rifle:
+                    FireGun();
+                    break;
+                case WeaponID.knife:
+                    FireKnife();
+                    break;
+            }
         }
-
     }
     private IEnumerator ShotEffect()
     {
@@ -120,7 +117,7 @@ public class PlayerController : MonoBehaviour {
 
     void FireGun()
     {
-        if (Input.GetButtonDown("Fire1") && Time.time > nextFire)
+        if(Time.time > nextFire)
         {
             nextFire = Time.time + fireRate;
 
@@ -131,6 +128,7 @@ public class PlayerController : MonoBehaviour {
             RaycastHit hit;
 
             laserLine.SetPosition(0, gunEnd.position);
+
 
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
@@ -145,11 +143,6 @@ public class PlayerController : MonoBehaviour {
 
                 }
 
-
-                if (hit.rigidbody != null)
-                {
-                    hit.rigidbody.AddForce(-hit.normal * hitForce);
-                }
             }
             else
             {
@@ -159,6 +152,8 @@ public class PlayerController : MonoBehaviour {
     }
     void FireKnife()
     {
+        
+        knifeAnimation.Play("KnifeAnimation");
 
     }
 }
