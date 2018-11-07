@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour {
 
+    public int health = 10;
     enum WeaponID {knife, rifle};
     public int gunDamage = 1;
     public float fireRate = 0.25f;
@@ -54,6 +56,11 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        if(health <= 0)
+        {
+            Scene scene = SceneManager.GetActiveScene();
+            SceneManager.LoadScene(scene.name);
+        }
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
             if ((int)itemNumber < inventory.Length - 1)

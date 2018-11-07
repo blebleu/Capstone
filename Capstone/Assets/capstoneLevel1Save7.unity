@@ -4248,6 +4248,15 @@ Prefab:
       propertyPath: m_TagString
       value: Untagged
       objectReference: {fileID: 0}
+    - target: {fileID: 114967780909108258, guid: fe402a8906c2d1e4b9298e6bae874ed4,
+        type: 2}
+      propertyPath: enemyGun
+      value: 
+      objectReference: {fileID: 631884150}
+    - target: {fileID: 4936008346746468, guid: fe402a8906c2d1e4b9298e6bae874ed4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe402a8906c2d1e4b9298e6bae874ed4, type: 2}
   m_IsPrefabAsset: 0
@@ -19989,27 +19998,15 @@ Prefab:
       propertyPath: m_RootOrder
       value: 61
       objectReference: {fileID: 0}
-    - target: {fileID: 1204596266783790, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
-      propertyPath: m_Name
-      value: camera (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4519515945952846, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4519515945952846, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 138.81601
-      objectReference: {fileID: 0}
-    - target: {fileID: 4519515945952846, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 114647879455694650, guid: 1690f1a54d7a96a41bf36ea30c154b56,
         type: 2}
       propertyPath: enemiesToCall.Array.data[0]
       value: 
       objectReference: {fileID: 1279110763}
+    - target: {fileID: 1204596266783790, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
+      propertyPath: m_Name
+      value: camera (1)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1690f1a54d7a96a41bf36ea30c154b56, type: 2}
   m_IsPrefabAsset: 0
