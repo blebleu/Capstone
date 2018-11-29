@@ -31,7 +31,7 @@ public class MoveTo : MonoBehaviour
         laserLine.startWidth = .2f;
         laserLine.endWidth = .1f;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         UnityEngine.AI.NavMeshAgent agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
 
