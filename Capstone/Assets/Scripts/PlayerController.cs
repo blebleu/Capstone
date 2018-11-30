@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour {
     enum WeaponID {knife, rifle};
     public int gunDamage = 1;
     public float fireRate = 0.25f;
-    public float weaponRange = 50f;
+    public float weaponRange = 200f;
     public Transform gunEnd;
 
     private Camera fpsCam;
@@ -23,13 +23,14 @@ public class PlayerController : MonoBehaviour {
     
     public Animator knifeAnimation;
 
+
+    // Sound Object when gun is shot
+    public GameObject soundArea;
     //Objects the player can use
 
     public GameObject[] inventory;
 
-    public GameObject fist;
     public GameObject knife;
-    public GameObject pistol;
     public GameObject rifle;
 
     public GameObject itemInHand;
@@ -136,10 +137,14 @@ public class PlayerController : MonoBehaviour {
 
             laserLine.SetPosition(0, gunEnd.position);
 
+            Instantiate(soundArea, gameObject.transform.position, Quaternion.identity);
+            
 
             if (Physics.Raycast(rayOrigin, fpsCam.transform.forward, out hit, weaponRange))
             {
                 laserLine.SetPosition(1, hit.point);
+                GameObject bulletSound = Instantiate(soundArea, hit.point, Quaternion.identity);
+                bulletSound.transform.localScale = new Vector3(20, 20, 20);
 
                 if (hit.transform.tag == "Enemy")
                 {
