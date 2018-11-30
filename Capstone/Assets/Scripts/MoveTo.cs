@@ -18,7 +18,7 @@ public class MoveTo : MonoBehaviour
     private LineRenderer laserLine;
     Ray enemyRay;
     public GameObject enemyGun;
-    private float enemyRange = 15;
+    private float enemyRange = 30;
     public float FOV = 65;
     private WaitForSeconds shotDuration = new WaitForSeconds(0.07f);
     [SerializeField] private float fireRate = 0;
