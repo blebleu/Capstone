@@ -31,6 +31,8 @@ public class MoveTo : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<PlayerController>().transform;
+
         enemyPos.Add(gameObject.transform.position);
         EnemyController enemyScript = GetComponent<EnemyController>();
         laserLine = GetComponent<LineRenderer>();

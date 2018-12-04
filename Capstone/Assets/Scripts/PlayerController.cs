@@ -150,7 +150,8 @@ public class PlayerController : MonoBehaviour {
                 {
                     EnemyController theEnemy = hit.collider.GetComponent<EnemyController>();
 
-                    theEnemy.Damage(gunDamage);
+                    if(theEnemy != null)
+                        theEnemy.Damage(gunDamage);
 
 
                 }
