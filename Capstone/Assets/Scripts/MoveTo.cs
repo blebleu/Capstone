@@ -8,6 +8,7 @@ public class MoveTo : MonoBehaviour
     public Transform player;
     public Transform seekLocation;
     public GameObject[] patrolSpots;
+    EnemyController eCon;
 
     public enum EnemyStates { Patrol, Seeking, Searching, Attacking, Retreating };
     
@@ -38,6 +39,7 @@ public class MoveTo : MonoBehaviour
         laserLine = GetComponent<LineRenderer>();
         laserLine.startWidth = .2f;
         laserLine.endWidth = .1f;
+        eCon = GetComponent<EnemyController>();
     }
     private void Update()
     {
@@ -45,8 +47,12 @@ public class MoveTo : MonoBehaviour
 
 
         CanSeePlayer();
+        if(eCon.currentHealth <= 1)
+        {
+            enemyState = EnemyStates.Retreating;
+        }
         
-        if (enemyState == EnemyStates.Patrol)
+        if (enemyState == EnemyStates.Patrol || enemyState == EnemyStates.Retreating)
         {
             agent.isStopped = false;
             agent.destination = patrolSpots[currentPostion].gameObject.transform.position;
@@ -60,7 +66,8 @@ public class MoveTo : MonoBehaviour
             {
                 
                 Renderer rend = seekLocation.GetComponent<Renderer>();
-                rend.material.color = Color.gray;
+                EnemyCameras e = seekLocation.GetComponent<EnemyCameras>();
+                rend.material = e.white;
                 searchLength = 10;
                 enemyState = EnemyStates.Searching;
             }

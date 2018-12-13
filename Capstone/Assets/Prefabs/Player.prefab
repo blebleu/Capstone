@@ -171,7 +171,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1311497753900972}
   m_LocalRotation: {x: -0, y: 0.68463963, z: -0, w: 0.7288817}
-  m_LocalPosition: {x: -74.9, y: -0.83, z: -17.65}
+  m_LocalPosition: {x: -78.3, y: 0.6, z: -15.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4937578813139138}
@@ -580,7 +580,7 @@ MonoBehaviour:
   gunEnd: {fileID: 4075180751264900}
   knifeCount: 1
   knifeAnimation: {fileID: 0}
-  soundArea: {fileID: 0}
+  soundArea: {fileID: 1758355594353892, guid: 080e0ab98692f4f4581f0a1b55c1870e, type: 2}
   inventory: []
   knife: {fileID: 1086857675941064}
   rifle: {fileID: 1534190264419802}

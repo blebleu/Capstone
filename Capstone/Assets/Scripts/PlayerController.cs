@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.P))
+        {
+            health = 0;
+        }
         if(health <= 0)
         {
             Scene scene = SceneManager.GetActiveScene();
