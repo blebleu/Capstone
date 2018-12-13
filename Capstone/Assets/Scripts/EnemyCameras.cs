@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyCameras : MonoBehaviour {
     public GameObject[] enemiesToCall;
     Renderer rend;
+    public Material white;
+    public Material red;
     void Start()
     {
         Renderer rend = gameObject.GetComponent<Renderer>();
-        rend.material.color = Color.black;
+        rend.material = white;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -22,7 +24,7 @@ public class EnemyCameras : MonoBehaviour {
                 Debug.Log("triggered 2");
             }
             Renderer rend = gameObject.GetComponent<Renderer>();
-            rend.material.color = Color.white;
+            rend.material = red;
         } 
     }
 }
